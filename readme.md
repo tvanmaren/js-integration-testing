@@ -14,13 +14,13 @@ $ npm install --save express morgan knex pg body-parser cookie-parser
 $ touch app.js
 $ touch knexfile.js
 $ touch knex.js
-
-add "knex": "knex" to package.json "scripts" object
-
-set "scripts" --> "test" value in package.json to "./node_modules/.bin/mocha -w"
-
 ```
-In the knexfile.js file, write and save the following code.
+add `"knex": "knex"` to package.json `"scripts"` object
+
+set `"scripts"` --> `"test"` value in package.json to `"./node_modules/.bin/mocha -w"`
+
+
+In the `knexfile.js` file, write and save the following code.
 ```
 module.exports = {
   development: {
@@ -33,7 +33,7 @@ module.exports = {
   }
 };
 ```
-In the knex.js file, write and save the following code:
+In the `knex.js` file, write and save the following code:
 ```
 const env = process.env.NODE_ENV || 'development';
 const config = require('knexfile')[env];
@@ -46,3 +46,17 @@ $ mkdir test
 $ cd test
 $ touch puppiesSpec.js
 ```
+Using Galvanize Bookshelf as a reference, write the necessary code in `app.js` to get your server running.
+
+Create your `puppies` database.
+Create a migration file that creates the `puppies` table:
+
+```
+id serial
+name string
+age integer
+breed string
+image_url text
+```
+
+Create a seed file that inserts at least three rows into the `puppies` table.

@@ -1,5 +1,5 @@
 #Javascript Integration Testing with...PUPPIES!
-Learn how to incorporate integration testing with your Express routes through completing the following guided exercise. Through this exercise, you'll create an Express app (server-side only) from scratch that includes integration tests.
+Learn how to incorporate integration testing with your Express routes through completing the following guided exercise. Through this exercise, you'll create a testable, server-side Express app.
 
 ![puppy](http://www.puppiesinflorida.com/wp-content/uploads/2016/07/Puppies_for_sale_in_florida.jpg "These pups are adorbs.")
 

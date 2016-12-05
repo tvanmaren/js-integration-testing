@@ -15,10 +15,13 @@ $ touch app.js
 $ touch knexfile.js
 $ touch knex.js
 ```
-Add `"knex": "knex"` to package.json `"scripts"` object
-
-Set `"scripts"` --> `"test"` value in package.json to `"./node_modules/.bin/mocha -w"`
-
+Your package.json should include the following modifications:
+```
+"scripts": {
+  "knex": "knex",
+  "test": "./node_modules/.bin/mocha -w"
+}
+```
 
 In the `knexfile.js` file, type and save the following code.
 ```
@@ -53,16 +56,14 @@ Write code in `puppies.js` so that when you send a request to `http://localhost:
 
 Create your `puppies_dev` & `puppies_test` databases.
 
-**Note**: Is it necessary to do the following?
-
 Create a migration file that creates the `puppies` table:
 
 ```
-**id** serial
-**name** string
-**age_in_months** integer
-**breed** string
-**image_url** text
+id serial
+name string
+age_in_months integer
+breed string
+image_url text
 ```
 
 Create a seed file that inserts two rows into the `puppies` table.
@@ -79,9 +80,12 @@ PUT /puppies/:id
 DELETE /puppies/:id
 ```
 
-As you follow this example in writing your own integration tests for `routes/puppies.js`, strive to understand the purpose and impact of each line. 
+As you follow this example in writing your own integration tests for `routes/puppies.js`, strive to understand the purpose and impact of each line.
 
-From `routes/directors.js`:
+Remember that it's the errors that pop up that we learn from. Strive to fix these yourself, but don't struggle for more than 20 minutes before asking your classmates or the instructors for help!
+
+
+From `test/directorsSpec.js`:
 ```
 process.env.NODE_ENV = 'test';
 
@@ -120,7 +124,7 @@ describe('GET /directors', () => {
   });
 });
 
-describe('GET /directors', () => {
+describe('GET /directors/:id', () => {
   it('gets a single director', done => {
     request(app)
     .get('/directors/1')
@@ -132,20 +136,6 @@ describe('GET /directors', () => {
       done();
     })
   });
-});
-
-describe('GET /directors', () => {
-  it('gets a single director to edit', done => {
-   request(app)
-   .get('/directors/2/edit')
-   .expect('Content-Type', /json/)
-   .end((err,res) => {
-    expect(res.body.id).to.equal(2)
-    expect(res.body.name).to.equal('second')
-    expect(res.body.age).to.equal(32)
-    done();
-  })
- });
 });
 
 describe('POST /directors', () => {

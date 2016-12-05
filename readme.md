@@ -1,4 +1,7 @@
-#Javascript Integration Testing
+#Javascript Integration Testing with...PUPPIES!
+Learn how to incorporate integration testing with your Express routes through completing the following guided exercise. Through this exercise, you'll create an Express app (server-side only) from scratch that includes integration tests.
+
+![puppy](http://www.puppiesinflorida.com/wp-content/uploads/2016/07/Puppies_for_sale_in_florida.jpg "These pups are adorbs.")
 
 ##Directory Setup
 
@@ -67,6 +70,7 @@ image_url text
 ```
 
 Create a seed file that inserts two rows into the `puppies` table.
+Run your migration and see file, and check `puppies_dev` to ensure there are no issues with these files.
 
 ##Write the Tests
 
@@ -93,6 +97,8 @@ const request = require('supertest');
 const expect = require('chai').expect;
 const app = require('../app');
 const knex = require('../knex');
+
+var allDirectors = null;
 
 beforeEach((done) => {
   knex.migrate.latest().then(() => {
@@ -131,8 +137,8 @@ describe('GET /directors/:id', () => {
     .expect('Content-Type', /json/)
     .end((err,res) => {
       expect(res.body.id).to.equal(1)
-      expect(res.body.name).to.equal('first')
-      expect(res.body.age).to.equal(22)
+      expect(res.body.name).to.equal('Steven Spielberg')
+      expect(res.body.age).to.equal(62)
       done();
     })
   });
@@ -142,7 +148,7 @@ describe('POST /directors', () => {
   const newDirector = {
     director: {
       id: 4,
-      name: 'Veronica',
+      name: 'Veronica Vaughn',
       age: 44
     }
   };
@@ -153,6 +159,7 @@ describe('POST /directors', () => {
       age: 'foo'
     }
   };
+
   it('successfully creates a director', done => {
     request(app)
     .post('/directors')
@@ -166,14 +173,15 @@ describe('POST /directors', () => {
       });
     });
   })
+
   it('returns a 400 if the data types added are incorrect', done => {
    request(app)
    .put('/directors/3')
    .type('form')
    .send(incorrectDataTypes)
    .end((err,res) =>{
-    expect(res.status).to.equal(400)
-    done();
+      expect(res.status).to.equal(400)
+      done();
   })
  })
 });
@@ -182,7 +190,7 @@ describe('PUT /directors/:id', () => {
   const updatedDirector = {
     director: {
       id: 3,
-      name: 'New Veronica',
+      name: 'That Veronica Vaughn',
       age: 54
     }
   };
@@ -193,28 +201,31 @@ describe('PUT /directors/:id', () => {
       age: 'foo'
     }
   };
+
   it('updates a director successfuly', done => {
    request(app)
    .put('/directors/3')
    .type('form')
    .send(updatedDirector)
    .end((err,res) =>{
-    expect(res.body[0].id).to.equal(3)
-    expect(res.body[0].name).to.equal('New Veronica')
-    expect(res.body[0].age).to.equal(54)
-    done();
+      expect(res.body[0].id).to.equal(3)
+      expect(res.body[0].name).to.equal('That Veronica Vaughn')
+      expect(res.body[0].age).to.equal(54)
+      done();
   })
  })
+
   it('returns a 400 if the data types added are incorrect', done => {
    request(app)
    .put('/directors/3')
    .type('form')
    .send(incorrectDataTypes)
    .end((err,res) =>{
-    expect(res.status).to.equal(400)
-    done();
+      expect(res.status).to.equal(400)
+      done();
   })
  })
+
   it('returns a 404 if the id can not be found', done => {
    request(app)
    .put('/directors/10')
@@ -243,6 +254,7 @@ describe('DELETE /directors/:id', () => {
     })
   });
  })
+
   it('returns a 404 if the id can not be found', done => {
    request(app)
    .delete('/directors/10')

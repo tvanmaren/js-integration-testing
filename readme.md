@@ -15,7 +15,7 @@ $ touch app.js
 $ touch knexfile.js
 $ touch knex.js
 ```
-Your package.json should include the following modifications:
+Your `package.json` should include the following modifications:
 ```
 "scripts": {
   "knex": "knex",
@@ -23,7 +23,7 @@ Your package.json should include the following modifications:
 }
 ```
 
-In the `knexfile.js` file, type and save the following code.
+In `knexfile.js`, type and save the following code.
 ```
 module.exports = {
   development: {
@@ -49,7 +49,7 @@ $ mkdir test
 $ cd test
 $ touch puppiesSpec.js
 ```
-Using Galvanize Bookshelf as a reference, write the necessary code in `app.js` to get your server running.
+Using **Galvanize Bookshelf** as a reference, write the necessary code in `app.js` to get your server running.
 
 Create your routes directory and touch into it `puppies.js`.
 Write code in `puppies.js` so that when you send a request to `http://localhost:8000/puppies`, the message 'Hello, puppies!' is sent in response.

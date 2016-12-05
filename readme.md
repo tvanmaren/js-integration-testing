@@ -2,7 +2,7 @@
 
 ##Directory Setup
 
-Follow the setup instructions. Make sure that you know why each of these steps is necessary, and what their output/outcome is.
+Follow the setup instructions. Strive to understand why each of these steps is necessary, along with their expected inputs and outputs.
 ```
 $ mkdir js-integration-testing
 $ cd js-integration-testing
@@ -51,8 +51,8 @@ $ touch puppiesSpec.js
 ```
 Using **Galvanize Bookshelf** as a reference, write the necessary code in `app.js` to get your server running.
 
-Create your routes directory and touch into it `puppies.js`.
-Write code in `puppies.js` so that when you send a request to `http://localhost:8000/puppies`, the message 'Hello, puppies!' is sent in response.
+Create your `routes` directory and touch into it `puppies.js`.
+Import the necessary modules and files, and export your router.
 
 Create your `puppies_dev` & `puppies_test` databases.
 

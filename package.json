@@ -4,7 +4,8 @@
   "description": "Learn how to incorporate integration testing with your Express routes through completing the following guided exercise. Through this exercise, you'll create a testable, server-side Express app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "knex": "knex",
+    "test": "./node_modules/.bin/mocha -w"
   },
   "repository": {
     "type": "git",

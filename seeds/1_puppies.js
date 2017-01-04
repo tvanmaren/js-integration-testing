@@ -5,7 +5,7 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('puppies').insert({
+        knex('puppies').insert([{
           id: 1,
           name: 'Smugglewumpus',
           age_in_months: 3,
@@ -17,6 +17,9 @@ exports.seed = function (knex, Promise) {
           age_in_months: 2,
           breed: 'Italian Greyhound',
           image_url: 'https://s-media-cache-ak0.pinimg.com/236x/05/24/47/052447cf59acebf6f82dcd8bdf6c024e.jpg'
-        })]);
+        }]).then(() => {
+          return knex.raw("SELECT setval('puppies_id_seq', (SELECT MAX(id) FROM puppies));");
+        })
+      ]);
     });
 };

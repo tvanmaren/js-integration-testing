@@ -26,7 +26,7 @@ case 'production':
   }
 }
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended:false }));
 app.use(cookieParser());
 const path=require('path');
 app.use(express.static(path.join('public')));
